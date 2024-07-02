@@ -30,15 +30,18 @@ p{
     flex-direction: column;
 }
 
-.black{
+/* .black-card{
     z-index: -1;
     background-color: hsl(0, 0%, 7%);
-    position: relative;
-    top: 15px;
+    position: absolute;
+    top: 12px;
     height: 32em;
-}
+} */
 
-.card{
+/* I was going to create a black card, place it beneath the preview card, but then...hovering on active state is a bit difficult to do. So I decided 
+to look at other peoples solutions. */
+
+.preview-card{
     width: 23.5em;
     height: 32em;
     padding: 15px;
@@ -46,15 +49,40 @@ p{
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.preview{
     margin-left: 30px;
     background-color: hsl(0, 0%, 100%);
     border: 1px solid hsl(0, 0%, 7%);
+    box-shadow: black 8px 8px 0px 0px; 
+    /* the box shadow was inspiration taken from another member's solution */
+    transition: 0.3s ease;
+    pointer-events: none;
 }
 
-.preview img{
+/* But now, the issue is with having both the active states activate upon hovering over h1 tag...found a stackoverflow article 
+with a possible solution- using a sibling selector combinator ' ~ ' to create a hover effect. I'm avoiding using ChatGPT for an easy solve...
+Did a little searching around, found a stackoverflow article on 'how-to-style-the-parent-element-when-hovering-a-child-element'. Pointer events!*/
+
+
+h1{
+    font-weight: 800;
+    font-size: 1.5em;
+    transition: 0.2s ease;
+    pointer-events: auto;
+}
+
+h1:hover{
+    color: hsl(47, 88%, 63%);
+    cursor: pointer;
+}
+
+.preview-card:hover{
+    box-shadow: black 15px 15px 0px 0px;
+}
+
+/* It works! It WORKS! HAHAHAH!!! */
+
+
+.preview-card img{
     width: 23em;
     border-radius: 25px;
     margin-bottom: 10px;
@@ -70,10 +98,6 @@ p{
     border-radius: 5px;
 }
 
-h1{
-    font-weight: 800;
-    font-size: 1.5em;
-}
 
 .tag, h1{
     font-weight: 800;
